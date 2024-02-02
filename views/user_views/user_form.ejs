@@ -1,0 +1,48 @@
+<%if(locals.currentUser){%>
+
+    <h1><%= title %>... to secret fanclub?</h1>
+    <p>Welcome <%= locals.currentUser.username%></p>
+<%}else{%>
+    <h1><%=title%></h1>
+    <form action="" method="post">
+        <div class="form-input">
+            <label for="first_name">First name:
+                <input type="text" name="first_name" id="first_name" value="<%=locals.user === undefined ? '' : locals.user.first_name %>" placeholder="First Name" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="family_name">Family name:
+                <input type="text" name="family_name" id="family_name" value="<%=locals.user === undefined ? '' : locals.user.family_name %>" placeholder="Family Name" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="email">Email:
+                <input type="email" name="email" id="email" value="<%=locals.user === undefined ? '' : locals.user.email %>" placeholder="Email" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="password">Password:
+                <input type="password" name="password" id="password" value="" placeholder="password" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="password_retype">Retype Password:
+                <input type="password" name="password_retype" id="password_retype" value="" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="memberstatus">
+                <input type="hidden" name="memberstatus" id="memberstatus" value="<%=locals.user === undefined ? 'false' : locals.user.member %>">
+            </label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <%if(locals.errors){%>
+    <ul>
+        <%errors.forEach(function(error){%>
+            <li><%=error.msg%></li>
+        <%})%>
+    </ul>
+    <%}%>
+<%}%>

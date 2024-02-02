@@ -1,0 +1,17 @@
+<h1><%=title%></h1>
+<%if(posts.length){%>
+    <h2>Please delete the following posts first</h2>
+    <%posts.forEach(function(post){%>
+        <p><a href="<%= post.url%>"><%=post.name%></a></p>
+    <%})%>
+<%}else{%>
+<div style="display: flex; gap: 10px;">
+    <form method="post">
+        <input type="hidden" name="userid" value="<%=user._id%>" id="userid">
+        <button type="submit">Confirm</button>
+    </form>
+    <form action="/">
+        <button type="submit">Cancel</button>
+    </form>
+</div>
+<%}%>

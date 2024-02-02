@@ -1,8 +1,40 @@
 body {
-  padding: 50px;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0px;
+    justify-content: flex-start;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+.postContent{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 2vw;
+}
+.title{
+  font-size: 50px;
+  display: flex;
+  font-weight: 700;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.postBox{
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-width: 5px;
+  border-style: double;
+  border-radius: 10px;
+  padding: 10px;
+}
+.postName{
+  margin: 0px;
 }

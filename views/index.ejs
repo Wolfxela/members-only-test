@@ -1,11 +1,45 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+
+<%if(locals.currentUser){%>
+
+    <p class="title">Welcome to <%= title %> <a href="<%=locals.currentUser.url%>"><%= locals.currentUser.username%></a></p>
+    <div class="postContent">
+        <div class="postBox">
+            <h2 class="postName">Post Name</h2>
+            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
+            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
+        </div>
+        <div class="postBox">
+            <h2 class="postName">Post Name</h2>
+            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
+            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
+        </div>
+        <div class="postBox">
+            <h2 class="postName">Post Name</h2>
+            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
+            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
+        </div>
+        <div class="postBox">
+            <h2 class="postName">Post Name</h2>
+            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
+            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
+        </div>
+    </div>
+<%}else{%>
+    <h1>Please Log in!</h1>
+    <h3>If you don't have an account with us yet please <a href="/social/user/create">sign up here!</a></h3>
+    <form action="/log-in" method="post">
+        <div>
+            <label for="username">Username(first name+family name)
+                <input id="username" name="username" placeholder="username" type="text" />
+            </label>
+        </div>
+        <div>
+        <label for="password">Password
+            <input id="password" name="password" type="password" />
+        </label>
+        </div>
+
+        <button>Log In</button>
+    </form>
+
+<%}%>

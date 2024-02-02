@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const PostSchema = new Schema({
     title:{type: String, required:true, maxLength:100},
-    User:{type:Schema.Types.ObjectId,ref:"User",required:true},
+    user:{type:Schema.Types.ObjectId,ref:"User",required:true},
     description:{type:String},
     postDate:{type:Date,required:true}
 })

@@ -1,0 +1,10 @@
+<h1><%=user.username%></h1>
+<form action="/log-out" method="post"><button type="submit">Log out</button></form>
+<h2><a href="/social/user/<%=user._id%>/update">Update account</a> <a href="/social/user/<%=user._id%>/delete">Delete account</a></h2>
+<%if(user.member !== true){%>
+    <a href="secret/<%=user._id%>">secret? </a>
+<%}%> 
+
+<%if(!locals.posts){%>
+    <h3>No posts yet! <a href="/social/post/create/<%=user._id%>">Make one here!</a></h3>
+<%}%>

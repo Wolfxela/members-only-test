@@ -1,10 +1,36 @@
 <h1><%=user.username%></h1>
-<form action="/log-out" method="post"><button type="submit">Log out</button></form>
-<h2><a href="/social/user/<%=user._id%>/update">Update account</a> <a href="/social/user/<%=user._id%>/delete">Delete account</a></h2>
+<form action="/log-out" method="post">
+    <div class="userOptions">
+        <h2>
+            <a href="/social/user/<%=user._id%>/update">Update account</a>
+            <a href="/social/user/<%=user._id%>/delete">Delete account</a>
+            <button class="userBtn" type="submit">Log out</button>
+        </h2>
+    </div>
+</form>
 <%if(user.member !== true){%>
     <a href="secret/<%=user._id%>">secret? </a>
 <%}%> 
 
-<%if(!locals.posts){%>
-    <h3>No posts yet! <a href="/social/post/create/<%=user._id%>">Make one here!</a></h3>
+<%if(locals.posts.length <= 0){%>
+    <h3>No posts yet! <a href="/social/post/create">Make a new post here!</a> </h3>
+<%}else{%>
+    <h2>Your posts!</h2>
+    <div class="userPosts">
+    <%posts.forEach(function(post){%>
+        <div class="postBox">
+            <div class="topContent">
+                <h2 class="postName"><%=post.title%></h2>
+                <h2 class="postAuthor">-<%= post.user.username%></h2>
+            </div>
+            <p class="postStory"><%=post.description%></p>
+            <h3 class="postDate"><%=post.postDate%></h3>
+            <div>
+                <a class="updateBtn" href="/social/post/<%=post.id%>/update">Update Post</a>
+                <a class="deleteBtn" href="/social/post/<%=post.id%>/delete">Delete Post</a>
+            </div>
+        </div>
+    <%})%>
+    </div>
+    <p><a href="/social/post/create">Make a new post here!</a></p>
 <%}%>

@@ -1,4 +1,4 @@
-<%if(locals.currentUser){%>
+<%if(locals.currentUser && !locals.update){%>
 
     <h1><%= title %>... to secret fanclub?</h1>
     <p>Welcome <%= locals.currentUser.username%></p>
@@ -33,6 +33,11 @@
         <div class="form-input">
             <label for="memberstatus">
                 <input type="hidden" name="memberstatus" id="memberstatus" value="<%=locals.user === undefined ? 'false' : locals.user.member %>">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="admin"> I am an Admin
+                <input type="checkbox" name="admin" id="admin" value="admin">
             </label>
         </div>
         <button type="submit">Submit</button>

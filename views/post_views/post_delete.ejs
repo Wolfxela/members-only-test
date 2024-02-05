@@ -1,0 +1,15 @@
+<%if(locals.currentUser){%>
+    <h1><%=title%></h1>
+    <div style="display: flex;">
+        <form method="post">
+            <input type="hidden" name="postID" id="postID" value="<%=post._id%>">
+            <button type="submit">Confirm</button>
+        </form>
+        <form action="/" method="get">
+            <button type="submit">Cancel</button>
+        </form>
+    </div>
+    <%}else{%>
+    <h1>Please <a href="/">Log in</a> to make a post</h1>
+<%}%>
+

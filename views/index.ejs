@@ -3,34 +3,38 @@
 
     <p class="title">Welcome to <%= title %> <a href="<%=locals.currentUser.url%>"><%= locals.currentUser.username%></a></p>
     <div class="postContent">
-        <div class="postBox">
-            <h2 class="postName">Post Name</h2>
-            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
-            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
-        </div>
-        <div class="postBox">
-            <h2 class="postName">Post Name</h2>
-            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
-            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
-        </div>
-        <div class="postBox">
-            <h2 class="postName">Post Name</h2>
-            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
-            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
-        </div>
-        <div class="postBox">
-            <h2 class="postName">Post Name</h2>
-            <p class="postStory">hellooooooo and welcome to my post its a very nice post please share like and subscribe this is my message to you all i should use spaces more yes</p>
-            <h3 class="postDate">Posted on 2006 Nov 25th</h3>
-        </div>
+        <%if(locals.posts.length > 0)%>
+        <%{%>
+            <%posts.forEach(function(post){%>
+                <div class="postBox">
+                    <div class="topContent">
+                        <h2 class="postName"><%=post.title%></h2>
+                        <%if(locals.currentUser.id === post.user.id || locals.currentUser.member === true || locals.currentUser.admin === true){%>
+                            <h2 class="postAuthor">-<%= post.user.username%></h2>
+                        <%}else{%>
+                            <h2 class="postAuthor">Anonymous</h2>
+                        <%}%>
+                    </div>
+                    <p class="postStory"><%=post.description%></p>
+                    <h3 class="postDate"><%=post.postDate%></h3>
+                    <%if(locals.currentUser.id === post.user.id || locals.currentUser.admin === true){%>
+                        <div>
+                            <a class="updateBtn" href="/social/post/<%=post.id%>/update">Update Post</a>
+                            <a class="deleteBtn" href="/social/post/<%=post.id%>/delete">Delete Post</a>
+                        </div>
+                    <%}%>
+
+                </div>
+            <%})%>
+        <%}%>
     </div>
 <%}else{%>
     <h1>Please Log in!</h1>
     <h3>If you don't have an account with us yet please <a href="/social/user/create">sign up here!</a></h3>
     <form action="/log-in" method="post">
         <div>
-            <label for="username">Username(first name+family name)
-                <input id="username" name="username" placeholder="username" type="text" />
+            <label for="username">Username
+                <input id="username" name="username" placeholder="(first name+family name)" type="text" />
             </label>
         </div>
         <div>

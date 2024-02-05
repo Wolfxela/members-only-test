@@ -14,12 +14,12 @@ router.get("/user/:id/update",userController.user_update_get)
 router.post("/user/:id/update",userController.user_update_post)
 router.get("/user/:id",userController.user_details)
 
-router.get("/post/:userid/create",postController.post_create_get)
-router.post("/post/:userid/create",postController.post_create_post)
+router.get("/post/create",postController.post_create_get)
+router.post("/post/create",postController.post_create_post)
 router.get("/post/:id/update",postController.post_update_get)
 router.post("/post/:id/update",postController.post_update_post)
 router.get("/post/:id/delete",postController.post_delete_get)
 router.post("/post/:id/delete",postController.post_delete_post)
-router.get("/post/:id",postController.post_details)
+// router.get("/post/:id",postController.post_details)
 
 module.exports = router

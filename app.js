@@ -10,11 +10,17 @@ const localStrategy = require("passport-local").Strategy
 const expressLayouts = require("express-ejs-layouts")
 const User = require("./models/user_model")
 const mongoose = require('mongoose')
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 const socialRouter = require('./routes/social')
 const bcrypt = require('bcrypt')
+const compression = require('compression')
+const helmet = require('helmet')
+const rateLimit = require('express-rate-limit')
 
+const limit = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 50,
+
+})
 const app = express();
 main().catch((err=>{console.log(err)}))
 async function main(){
@@ -50,6 +56,9 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   };
 });
+app.use(compression())
+app.use(limit)
+app.use(helmet())
 app.use(expressLayouts)
 app.use(session({secret:"cats",resave:false,saveUninitialized:true}))
 app.use(passport.initialize())

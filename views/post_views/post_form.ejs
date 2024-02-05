@@ -1,0 +1,37 @@
+<%if(locals.currentUser){%>
+    <h1><%=title%></h1>
+    <form action="" method="post">
+        <div class="form-input">
+            <label for="tile">Title:
+                <input type="text" name="title" id="title" value="<%=locals.post === undefined ? '' : locals.post.title %>" placeholder="Title" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="description">Message:
+                <input type="text" name="description" id="description" value="<%=locals.post === undefined ? '' : locals.post.description %>" placeholder="Message" required minlength="3" maxlength="100">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="userID">
+                <input type="hidden" name="userID" id="userID" value="locals.currentUser._id%>">
+            </label>
+        </div>
+        <div class="form-input">
+            <label for="date">
+                <input type="hidden" name="date" id="date" value="<%=locals.post === undefined ? '' : locals.post.postDate %>">
+            </label>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <%if(locals.errors){%>
+    <ul>
+        <%errors.forEach(function(error){%>
+            <li><%=error.msg%></li>
+        <%})%>
+    </ul>
+    <%}%>
+
+<%}else{%>
+<h1>Please <a href="/">Log in</a> to make a post</h1>
+<%}%>
